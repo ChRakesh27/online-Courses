@@ -118,7 +118,7 @@ function ResumeBuilder() {
           <div>
             <div className="text-3xl">Resume Details</div>
             <div className="space-y-3">
-              <div className="border-b-2 pb-4">
+              <div className="border-t-2 pt-4">
                 <div
                   className="text-lg font-bold cursor-pointer flex justify-between items-center"
                   onClick={() =>
@@ -221,7 +221,7 @@ function ResumeBuilder() {
                   </div>
                 )}
               </div>
-              <div className="border-b-2 pb-4">
+              <div className="border-t-2 pt-4">
                 <div
                   className="text-lg font-bold cursor-pointer flex justify-between items-center"
                   onClick={() =>
@@ -460,7 +460,7 @@ function ResumeBuilder() {
                   </div>
                 )}
               </div>
-              <div className="border-b-2 pb-4">
+              <div className="border-t-2 pt-4">
                 <div
                   className="text-lg font-bold cursor-pointer flex justify-between items-center"
                   onClick={() =>
@@ -660,7 +660,7 @@ function ResumeBuilder() {
                   </div>
                 )}
               </div>
-              <div className="border-b-2 pb-4">
+              <div className="border-t-2 pt-4">
                 <div
                   className="text-lg font-bold cursor-pointer flex justify-between items-center"
                   onClick={() =>
@@ -733,7 +733,7 @@ function ResumeBuilder() {
                   </div>
                 )}
               </div>
-              <div className="border-b-2 pb-4">
+              <div className="border-t-2 pt-4">
                 <div
                   className="text-lg font-bold cursor-pointer flex justify-between items-center"
                   onClick={() =>
@@ -881,7 +881,7 @@ function ResumeBuilder() {
                   </div>
                 )}
               </div>
-              <div className="border-b-2 pb-4">
+              <div className="border-t-2 pt-4">
                 <div
                   className="text-lg font-bold cursor-pointer flex justify-between items-center"
                   onClick={() =>
@@ -1012,7 +1012,7 @@ function ResumeBuilder() {
                   </div>
                 )}
               </div>
-              <div className="border-b-2 pb-4">
+              <div className="border-t-2 pt-4">
                 <div
                   className="text-lg font-bold cursor-pointer flex justify-between items-center"
                   onClick={() =>
@@ -1053,7 +1053,7 @@ function ResumeBuilder() {
         <div className="w-2/3 px-32 py-3 border-2 h-screen overflow-y-auto bg-gray-300">
           <div className="text-xl">Preview</div>
 
-          <div className="bg-white rounded-lg p-16 py-10 space-y-3">
+          <div className="bg-white min-h-screen rounded-lg p-16 py-10 space-y-3">
             <div className="text-center border-b-2 py-3">
               <div className="text-5xl">
                 {formData.firstName} {formData.lastName}
@@ -1073,7 +1073,8 @@ function ResumeBuilder() {
                     <div className="flex justify-between">
                       <div className="font-bold">{edu.institution}</div>
                       <div>
-                        {edu.startDate}-{edu.gradDate}
+                        {edu.startDate}
+                        {edu.gradDate && " - " + edu.gradDate}
                       </div>
                     </div>
                     <div className="flex justify-between">
@@ -1135,9 +1136,17 @@ function ResumeBuilder() {
                   <div key={index}>
                     {(pro.name || pro.startDate || pro.endDate) && (
                       <div className="flex justify-between">
-                        <div className="font-bold">{pro.name}</div>
                         <div>
-                          {pro.startDate}-{pro.endDate}
+                          <span className="font-bold ">{pro.name} </span>
+                          {pro.link && (
+                            <a href={pro.link} rel="ref" target="_blank">
+                              - Link
+                            </a>
+                          )}
+                        </div>
+                        <div>
+                          {pro.startDate}
+                          {pro.endDate && " - " + pro.endDate}
                         </div>
                       </div>
                     )}
@@ -1163,7 +1172,14 @@ function ResumeBuilder() {
                 {formData.certificates.map((cer, index) => (
                   <div key={index}>
                     <div className="">
-                      {cer.name} - {cer.issuedBy}
+                      {cer.link ? (
+                        <a href={cer.link} rel="ref" target="_blank">
+                          {cer.name}
+                        </a>
+                      ) : (
+                        cer.name
+                      )}
+                      {cer.issuedBy && " - " + cer.issuedBy}
                     </div>
                   </div>
                 ))}
